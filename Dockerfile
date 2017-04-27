@@ -1,7 +1,6 @@
 FROM alpine:3.5
 
 MAINTAINER Matt Bailey <m@mdb.io>
-ENV DRIVE_PATH="/data"
 
 RUN apk -Uu add opam make build-base gcc abuild binutils bash ncurses-dev &&\
   OPAMYES=true opam init && \
@@ -30,6 +29,11 @@ RUN apk -Uu add opam make build-base gcc abuild binutils bash ncurses-dev &&\
     sqlite-dev && \
   apk add libressl2.4-libtls fuse libgmpxx sqlite-libs libcurl ncurses-libs
 
+ENV DRIVE_PATH="/drive"
+ENV LABEL="gdrive"
+
 COPY init.sh /
+RUN chmod +x /init.sh
+RUN mkdir -p $DRIVE_PATH
 
 CMD ["/init.sh"]
