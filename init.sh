@@ -33,7 +33,7 @@ fi
 
 echo "mounting at ${DRIVE_PATH}"
 google-drive-ocamlfuse ${DRIVE_PATH} \
-  -o uid=${PUID},gid=${PGID},allow_root \
+  -o uid=${PUID},gid=${PGID},allow_other \
   -label ${LABEL} \
   -f \
   -cc \
